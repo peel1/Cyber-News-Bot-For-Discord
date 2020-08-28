@@ -11,7 +11,7 @@ from asyncio import sleep
 SetChan = int(0)
 CurrentChan = str(" ")
 pentry = str(" ")
-TOKEN = "NzQ4NjgxMTc4ODI3MDYzMzg3.X0g9rg.to9JrPUJcLaiUGya7TWYadbIsVg"
+TOKEN = "INSERT-TOKEN-HERE"
 
 
 bot = commands.Bot(command_prefix='@')
