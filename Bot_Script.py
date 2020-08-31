@@ -11,7 +11,7 @@ from asyncio import sleep
 SetChan = int(0)
 CurrentChan = str(" ")
 pentry = str(" ")
-TOKEN = "INSERT-TOKEN-HERE"
+TOKEN = "TOKEN"
 
 
 bot = commands.Bot(command_prefix='@')
@@ -30,11 +30,17 @@ async def channel_set(ctx, Channel):
 
 async def status_task():
     while True:
+        while SetChan == 0:
+            await asyncio.sleep(20)
         global pentry
+        print("Works?")
         NewsFeed = feedparser.parse("https://threatpost.com/feed/")
         entry = NewsFeed.entries[1]
-        if entry == pentry:
-            break
+        while entry == pentry:
+            await asyncio.sleep(60)
+            print("x")
+            entry = NewsFeed.entries[1]
+            print(entry)
         print(entry)
         Rtitle = entry.title
         Rdesc = entry.summary
@@ -46,17 +52,17 @@ async def status_task():
             color=discord.Colour(value=0xff1414),
         )
         LatestNews.set_footer(text="Cyber News Bot by peel1 - Powered by threatpost.com")
+        print(CurrentChan)
         await CurrentChan.send(embed=LatestNews)
-        await sleep(10)
+        print("Posted?")
+        await asyncio.sleep(60)
 
 
 @bot.event
 async def on_ready():
-    while SetChan == 0:
-        await asyncio.sleep(10)
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="The Latest Cyber News"))
-    bot.loop.create_task(status_task())
 
 
 
+bot.loop.create_task(status_task())
 bot.run(TOKEN)
