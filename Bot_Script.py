@@ -35,11 +35,11 @@ async def status_task():
         global pentry
         print("Works?")
         NewsFeed = feedparser.parse("https://threatpost.com/feed/")
-        entry = NewsFeed.entries[1]
+        entry = NewsFeed.entries[0]
         while entry == pentry:
             await asyncio.sleep(60)
             print("x")
-            entry = NewsFeed.entries[1]
+            entry = NewsFeed.entries[0]
             print(entry)
         print(entry)
         Rtitle = entry.title
