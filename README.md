@@ -11,3 +11,6 @@ Commands:
 Invite-Link:
 https://discord.com/api/oauth2/authorize?client_id=748681178827063387&permissions=536964096&scope=bot
 
+
+Powered by ThreatPost
+
