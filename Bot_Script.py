@@ -9,7 +9,7 @@ SetChan = int(0)
 CurrentChan = str(" ")
 pentry = str(" ")
 ToPost = []
-TOKEN = "NzQ4NjgxMTc4ODI3MDYzMzg3.X0g9rg.qipjBRrMfDg96BCh9pwr2xo6IkQ"
+TOKEN = "Token"
 x = int(0)
 
 bot = commands.Bot(command_prefix='@')
