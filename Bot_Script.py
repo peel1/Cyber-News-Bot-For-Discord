@@ -1,38 +1,50 @@
-# bot.py
-import os
-import random
+
 import feedparser
 import discord.ext
 from discord.ext import commands
-from discord.ext import tasks
 import asyncio
 
-from asyncio import sleep
+
 SetChan = int(0)
 CurrentChan = str(" ")
 pentry = str(" ")
-TOKEN = "TOKEN"
-
+ToPost = []
+TOKEN = "NzQ4NjgxMTc4ODI3MDYzMzg3.X0g9rg.qipjBRrMfDg96BCh9pwr2xo6IkQ"
+x = int(0)
 
 bot = commands.Bot(command_prefix='@')
 
 @bot.command(name='set-channel', help='Sets channel to display news. USAGE: @set-channel NAME')
 async def channel_set(ctx, Channel):
     global CurrentChan
-    Temp = discord.utils.get(bot.get_all_channels(), name=Channel)
+    global ToPost
+    id = ctx.message.guild.id
+    Guild = bot.get_guild(id)
+    Temp = discord.utils.get(Guild.text_channels, name=Channel)
     ID = Temp.id
     CurrentChan = bot.get_channel(ID)
+    ToPost.append(CurrentChan)
     print(ID)
     global SetChan
     SetChan = int(1)
     response = ("The channel is set to {}".format(Channel))
     await ctx.send(response)
 
+@bot.command(name='remove-channel', help='Remove channel to use. USAGE: @remove-channel NAME ')
+async def channel_set(ctx, Channel):
+    global ToPost
+    Temp = discord.utils.get(bot.get_all_channels(), name=Channel)
+    ID = Temp.id
+    CuC = bot.get_channel(ID)
+    ToPost.remove(CuC)
+    await ctx.send("Removed Channel: {}".format(Channel))
+
 async def status_task():
     while True:
         while SetChan == 0:
             await asyncio.sleep(20)
         global pentry
+        global x
         print("Works?")
         NewsFeed = feedparser.parse("https://threatpost.com/feed/")
         entry = NewsFeed.entries[0]
@@ -54,8 +66,12 @@ async def status_task():
         )
         LatestNews.set_footer(text="Cyber News Bot by peel1 - Powered by threatpost.com")
         print(CurrentChan)
-        await CurrentChan.send(embed=LatestNews)
+        for i in ToPost:
+            TempChan = ToPost[x]
+            await TempChan.send(embed=LatestNews)
+            x = x + 1
         print("Posted?")
+        x = int(0)
         await asyncio.sleep(60)
 
 
