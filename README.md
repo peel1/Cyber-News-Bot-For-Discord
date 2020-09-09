@@ -6,7 +6,8 @@ Commands:
 @set-channel "name of channel"  - This sets the channel for the bot to use to display news. IMPORTANT bot will not do anything unless channel is selected. 
 
 @remove-channel "name of channel" - Remove Channel for bot to use
-Invite-Link:
 
+
+Invite-Link:
 https://discord.com/api/oauth2/authorize?client_id=748681178827063387&permissions=536964096&scope=bot
 
