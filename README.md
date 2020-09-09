@@ -3,7 +3,7 @@ This bot displays latest news from threatpost and posts it into a discord chat o
 
 Commands:
 
-@set-channel "name of channel"  - This sets the channel for the bot to use to display news. IMPORTANT bot will not do anything unless channel is selected. IT IS CAP SENSITIVE
+@set-channel "name of channel"  - This sets the channel for the bot to use to display news. IMPORTANT bot will not do anything unless channel is selected. 
 @remove-channel "name of channel" - Remove Channel for bot to use
 Invite-Link:
 
