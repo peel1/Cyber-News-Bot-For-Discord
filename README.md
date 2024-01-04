@@ -15,3 +15,6 @@ https://discord.com/api/oauth2/authorize?client_id=748681178827063387&permission
 
 Powered by ThreatPost
 
+# IMPORTANT
+
+ThreatPost the site that was the source of the news scraped by the bot is now offically dead so the project only serves as a framework that can be modified to work with other news sites. 
